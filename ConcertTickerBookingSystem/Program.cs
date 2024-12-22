@@ -99,6 +99,17 @@ public class BookingSystem
     {
         return concerts.Where(filter);
     }
+    
+    public void DisplayConcertsByDateOrLocation(DateTime? date = null, string location = null)
+    {
+        var filteredConcerts = concerts.Where(c => (date == null || c.Date.Date == date.Value.Date) &&
+                                                   (location == null || c.Location == location));
+
+        foreach (var concert in filteredConcerts)
+        {
+            Console.WriteLine($"Koncert: {concert.Name}, Data: {concert.Date}, Lokalizacja: {concert.Location}, Dostępne miejsca: {concert.AvailableSeats}");
+        }
+    }
 }
 
 
