@@ -110,6 +110,16 @@ public class BookingSystem
             Console.WriteLine($"Koncert: {concert.Name}, Data: {concert.Date}, Lokalizacja: {concert.Location}, Dostępne miejsca: {concert.AvailableSeats}");
         }
     }
+    
+    public void GenerateReport()
+    {
+        Console.WriteLine("Raport o liczbie sprzedanych biletów:");
+        foreach (var concert in concerts)
+        {
+            var soldTickets = tickets.Count(t => t.Concert == concert);
+            Console.WriteLine($"Koncert: {concert.Name}, Sprzedane bilety: {soldTickets}");
+        }
+    }
 }
 
 
