@@ -69,6 +69,39 @@ public class PrivateConcert : IConcertType
     }
 }
 
+public class BookingSystem
+{
+    private List<Concert> concerts = new List<Concert>();
+    private List<Ticket> tickets = new List<Ticket>();
+
+    public void AddConcert(Concert concert)
+    {
+        concerts.Add(concert);
+        Console.WriteLine($"Dodano koncert: {concert.Name} w dniu {concert.Date}.");
+    }
+
+    public Ticket BookTicket(Concert concert, decimal price, int seatNumber)
+    {
+        if (concert.AvailableSeats <= 0)
+        {
+            throw new Exception("Brak dostępnych miejsc na ten koncert.");
+        }
+
+        concert.AvailableSeats--;
+        var ticket = new Ticket(concert, price, seatNumber);
+        tickets.Add(ticket);
+
+        Console.WriteLine($"Zarezerwowano bilet na koncert {concert.Name} dla miejsca {seatNumber}.");
+        return ticket;
+    }
+
+    public IEnumerable<Concert> GetConcerts(Func<Concert, bool> filter)
+    {
+        return concerts.Where(filter);
+    }
+}
+
+
 
 internal class Program
 {
