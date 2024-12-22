@@ -122,12 +122,23 @@ public class BookingSystem
     }
 }
 
-
-
 internal class Program
 {
     public static void Main(string[] args)
     {
-        Console.WriteLine("Hello, World!");
+        BookingSystem bookingSystem = new BookingSystem();
+        
+        var concert1 = new Concert("Rolling Loud", new DateTime(2025, 6, 15), "Miami", 50000);
+        var concert2 = new Concert("Clout Festival", new DateTime(2025, 7, 20), "Warszawa", 2000);
+
+        bookingSystem.AddConcert(concert1);
+        bookingSystem.AddConcert(concert2);
+        
+        bookingSystem.BookTicket(concert1, 2000, 1);
+        
+        Console.WriteLine("Koncerty w dniu 2025-06-15:");
+        bookingSystem.DisplayConcertsByDateOrLocation(date: new DateTime(2025, 6, 15));
+        
+        bookingSystem.GenerateReport();
     }
 }
