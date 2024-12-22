@@ -18,6 +18,20 @@ public class Concert
     }
 }
 
+public class Ticket
+{
+    public Concert Concert { get; private set; }
+    public decimal Price { get; private set; }
+    public int SeatNumber { get; private set; }
+
+    public Ticket(Concert concert, decimal price, int seatNumber)
+    {
+        Concert = concert;
+        Price = price;
+        SeatNumber = seatNumber;
+    }
+}
+
 internal class Program
 {
     public static void Main(string[] args)
